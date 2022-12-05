@@ -11,15 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val field1 = 5
-        var field2 = 5
-
-        field2 = 235
-
-        val test = Test(1,2) // задаём объект
-
-        val newi = test.vali // геттер, нет сеттера тк это val = изминяемая (вернули)
-        test.vari = newi // сеттер (присвоили)
+        val field = 5
 
     }
 }
@@ -27,11 +19,31 @@ class MainActivity : AppCompatActivity() {
 //TODO : class Test constructor( val vali: Int, var vari: Int){}
 //TODO : val = неизменяемое , var = изменяемое
 
-/*
-class Test constructor(){
-    lateinit var vali:String
-    fun name():String{
-        return vali
+open class Test(){ // нельзя наследоваться не от open класса
+    constructor(field: String):this()
+    constructor(field: String,field2: String):this(field)
+    constructor(field: String,field2: String, field3:String):this(field,field2)
+
+    private lateinit var vali:String
+    fun name(){
+        vali = "значение"
     }
 }
-*/
+
+class NewTest(field: String,field2: String):Test(field,field2){ // наследование
+
+var newField:String = " " // создаём новое, помимо наследования, private просто так
+
+
+        get(){
+            return "$newField get"
+    }
+        set(value){
+            field = "$value set"
+    } // это всё доступ к свойству как к полю
+
+
+    init{
+        newField = " "
+    }
+}
