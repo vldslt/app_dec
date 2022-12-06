@@ -5,15 +5,27 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.AttributeSet
+import android.view.View
+import androidx.appcompat.widget.AppCompatButton
 
 class MainActivity : AppCompatActivity() { // internal в начале делает класс видимым внутри модуля
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val field = 3
+        findViewById<AppCompatButton>(R.id.btn).setOnClickListener(object :View.OnClickListener{
+            override fun onClick(v: View?) {
+                //сюда можем поместить анонимный класс
+            }
+        })
 
-        NewTest.staticField // добавляем статическое поле
+        // анонимный класс = реализации нет, но экземпляр создаётся
+        val student = object { // создание экземпяра анонимного класса
+            val name = "Andrej"
+            var age = 20
+        }
+        student.age = 21 //присвоение параметра объекту
+
     }
 }
 open class Test(){ // нельзя наследоваться не от open класса
