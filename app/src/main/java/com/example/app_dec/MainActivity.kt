@@ -11,14 +11,11 @@ class MainActivity : AppCompatActivity() { // internal в начале дела�
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val field = 5
+        val field = 3
 
+        NewTest.staticField // добавляем статическое поле
     }
 }
-
-//TODO : class Test constructor( val vali: Int, var vari: Int){}
-//TODO : val = неизменяемое , var = изменяемое
-
 open class Test(){ // нельзя наследоваться не от open класса
 
     protected open val protString = "" // делаем полу публичным у наследника
@@ -34,22 +31,18 @@ open class Test(){ // нельзя наследоваться не от open к�
 }
 
 class NewTest(field: String,field2: String):Test(field,field2){ // наследование
-
-    public override val protString:String="" // делаем полу публичным у наследника
-
     var newField:String = " " // создаём новое, помимо наследования, private просто так
-
-
         get(){
             return "$newField get"
-    }
+        }
         set(value){
             field = "$value set"
-    } // это всё доступ к свойству как к полю
-
-
-    init{
-        newField = " "
-    }
+        } // это всё доступ к свойству как к полю
+        init{
+            newField = " "
+        }
+        companion object {
+            const val staticField = "hello" // добавляем статическое поле
+        }
 }
 
