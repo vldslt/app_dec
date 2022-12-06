@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.AttributeSet
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() { // internal в начале делает класс видимым внутри модуля
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity() {
 //TODO : val = неизменяемое , var = изменяемое
 
 open class Test(){ // нельзя наследоваться не от open класса
+
+    protected open val protString = "" // делаем полу публичным у наследника
+
     constructor(field: String):this()
     constructor(field: String,field2: String):this(field)
     constructor(field: String,field2: String, field3:String):this(field,field2)
@@ -32,7 +35,9 @@ open class Test(){ // нельзя наследоваться не от open к�
 
 class NewTest(field: String,field2: String):Test(field,field2){ // наследование
 
-var newField:String = " " // создаём новое, помимо наследования, private просто так
+    public override val protString:String="" // делаем полу публичным у наследника
+
+    var newField:String = " " // создаём новое, помимо наследования, private просто так
 
 
         get(){
@@ -47,3 +52,4 @@ var newField:String = " " // создаём новое, помимо насле�
         newField = " "
     }
 }
+
